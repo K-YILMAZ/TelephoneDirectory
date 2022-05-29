@@ -5,8 +5,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPost": [
         {
-          "Host": "jsonplaceholder.typicode.com",
-          "Port": 443
+          "Host": "localhost",
+          "Port": 5001
         }
       ],
       "UpstreamPathTemplate": "/services/telephone/directory/{everything}",

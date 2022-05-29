@@ -27,10 +27,9 @@ namespace Directory.Bussiness.Concrete.ContactInformations
         {
             return _contactInformationsDataAccess.GetAll();
         }
-
-        public ContactInformationsEntity GetById(long uuid)
+        public ContactInformationsEntity GetByPersonUUId(Guid PersonUUIDs)
         {
-            throw new NotImplementedException();
+          return  _contactInformationsDataAccess.Get(P => P.PersonUUID == PersonUUIDs);
         }
 
         public void Update(ContactInformationsEntity entity)

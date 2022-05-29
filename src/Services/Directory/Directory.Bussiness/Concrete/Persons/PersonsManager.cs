@@ -27,6 +27,12 @@ namespace Directory.Bussiness.Concrete.Persons
         {
             return _personsDataAccess.GetAll();
         }
+
+        public PersonsEntity GetByUUID(Guid guid)
+        {
+            return _personsDataAccess.Get(p => p.UUID == guid);
+        }
+
         public void Update(PersonsEntity entity)
         {
             _personsDataAccess.Update(entity);

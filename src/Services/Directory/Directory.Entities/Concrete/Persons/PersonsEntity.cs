@@ -10,7 +10,7 @@ namespace Directory.Entities.Concrete.Persons
     public class PersonsEntity:IEntity {
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long UUID { get; set; }
+        public Guid UUID { get; set; }
         [StringLength(20)]
         public string FirstName { get; set; }
         [StringLength(50)]
