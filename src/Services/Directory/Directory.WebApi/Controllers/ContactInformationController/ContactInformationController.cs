@@ -31,7 +31,7 @@ namespace Directory.WebApi.Controllers
             return _contactInformationsService ?? new ContactInformationsManager(new ContactInformationsDataAccess());
         }
 
-
+        // İletişim bilgisi Oluşturma
         [HttpPost]
         public string AddContactInformation(ContactInformationsEntity entity)
         {
@@ -46,6 +46,7 @@ namespace Directory.WebApi.Controllers
                 return "An error occurred. Error : " + ex.Message;
             }
         }
+        // İletişim bilgisi Kaldırma
         [HttpDelete]
         public string ContactInformationDelete(Guid UUID)
         {

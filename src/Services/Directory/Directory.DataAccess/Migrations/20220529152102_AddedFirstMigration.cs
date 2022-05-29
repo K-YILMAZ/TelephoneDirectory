@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Directory.DataAccess.Migrations
 {
@@ -11,13 +11,12 @@ namespace Directory.DataAccess.Migrations
                 name: "contactInformationsEntities",
                 columns: table => new
                 {
-                    UUID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UUID = table.Column<Guid>(type: "uuid", nullable: false),
                     TelephoneNumber = table.Column<int>(type: "integer", nullable: false),
                     Email = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     Location = table.Column<string>(type: "character varying(300)", maxLength: 300, nullable: true),
                     Description = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
-                    PersonUUID = table.Column<long>(type: "bigint", nullable: false)
+                    PersonUUID = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,8 +27,7 @@ namespace Directory.DataAccess.Migrations
                 name: "personsEntities",
                 columns: table => new
                 {
-                    UUID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UUID = table.Column<Guid>(type: "uuid", nullable: false),
                     FirstName = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
                     LastName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     Company = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true)

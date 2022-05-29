@@ -28,8 +28,6 @@ namespace Directory.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DirectoryRepositoryDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Directory.DataAccess")));
-            services.AddScoped<DbContext>(provider => provider.GetService<DirectoryRepositoryDbContext>());
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

@@ -8,8 +8,7 @@ using System.Text;
 namespace Directory.Entities.Concrete.Persons
 { 
     public class PersonsEntity:IEntity {
-
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public Guid UUID { get; set; }
         [StringLength(20)]
         public string FirstName { get; set; }

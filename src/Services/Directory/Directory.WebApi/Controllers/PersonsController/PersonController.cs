@@ -31,13 +31,13 @@ namespace Directory.WebApi.Controllers
         {
             return _contactInformationsService ?? new ContactInformationsManager(new ContactInformationsDataAccess());
         }
-
+        // Kişileri Listeleme
         [HttpGet]
         public List<PersonsEntity> GetAllPersons()
         {
             return IntancePerson().GetAll();
         }
-
+        // Kişileri Detaylı Listeleme
         [HttpGet]
         public List<ApiModels> GetAllDetailPersons()
         {
@@ -61,7 +61,7 @@ namespace Directory.WebApi.Controllers
             return ApiModels;
 
         }
-
+        // Kişi Oluşturma
         [HttpPost]
         public string AddPerson(ApiModels entity)
         {
@@ -85,6 +85,7 @@ namespace Directory.WebApi.Controllers
             }
         }
 
+        // Kişi Kaldırma
         [HttpDelete]
         public string PersonDelete(Guid UUID)
         {

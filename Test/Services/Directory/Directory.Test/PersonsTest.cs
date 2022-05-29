@@ -32,7 +32,8 @@ namespace Directory.Test
         {
             IntancePerson().Update(new PersonsEntity
             {
-                UUID=1,
+                
+                UUID=new System.Guid("817aa2c6-3d33-4b79-a74a-f61604315f3e"),
                 FirstName = "Kanber",
                 LastName = "YILMAZ",
                 Company = "kyilmaz", //Güncellenen bilgi

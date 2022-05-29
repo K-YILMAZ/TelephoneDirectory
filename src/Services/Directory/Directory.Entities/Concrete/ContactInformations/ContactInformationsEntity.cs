@@ -6,7 +6,7 @@ namespace Directory.Entities.Concrete.ContactInformations
 {
     public class ContactInformationsEntity : IEntity
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public Guid UUID { get; set; }
         public int TelephoneNumber { get; set; }
         [StringLength(50)]
