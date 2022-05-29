@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B05E4375-89A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solucation Items", "Solucation Items", "{50992F43-029F-40F4-B276-C65848AF4A18}"
 	ProjectSection(SolutionItems) = preProject
-		ServiceUrl.txt = ServiceUrl.txt
+		TextFile1.txt = TextFile1.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{5679EB63-D6CE-4E52-B6C4-9F0895517799}"
