@@ -1,6 +1,6 @@
 using System;
 
-namespace Directory.WebApi
+namespace TelephoneDirectory.Gateway
 {
     public class WeatherForecast
     {

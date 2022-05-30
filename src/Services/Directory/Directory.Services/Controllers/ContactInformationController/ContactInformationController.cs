@@ -6,14 +6,17 @@ using Directory.DataAccess.Concrete.ContactInformations;
 using Directory.DataAccess.Concrete.Persons;
 using Directory.Entities.Concrete.ContactInformations;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Directory.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
+   
     public class ContactInformationController : ControllerBase
     {
         private IPersonsService _personsService;
@@ -27,46 +30,25 @@ namespace Directory.WebApi.Controllers
         {
             return _contactInformationsService ?? new ContactInformationsManager(new ContactInformationsDataAccess());
         }
-        [HttpGet]
-        [Route("GetAll")]
-        public List<ContactInformationsEntity> GetAll()
-        {
-            try
-            {
-                return IntanceContactInformations().GetAll();
-            }
-            catch (Exception ex)
-            {
-                throw(ex);
-            }
-        }
 
         // İletişim bilgisi Oluşturma
         [HttpPost]
-        [Route("Add")]
-        public string Add([FromBody] ContactInformationsRequestBody contactInformationsRequestBody)
+        public string AddContactInformation(ContactInformationsEntity entity)
         {
             try
             {
-                IntanceContactInformations().Add(new ContactInformationsEntity
-                {
-                    Description = contactInformationsRequestBody.Description,
-                    Email = contactInformationsRequestBody.Email,
-                    Location = contactInformationsRequestBody.Location,
-                    PersonUUID = contactInformationsRequestBody.PersonUUID,
-                    TelephoneNumber = contactInformationsRequestBody.TelephoneNumber
-                });
+                entity.UUID = Guid.NewGuid();
+                IntanceContactInformations().Add(entity);
                 return "successful";
             }
             catch (System.Exception ex)
             {
-                throw(ex);
+                return "An error occurred. Error : " + ex.Message;
             }
         }
         // İletişim bilgisi Kaldırma
         [HttpDelete]
-        [Route("Delete/{UUID}")]
-        public string Delete(Guid UUID)
+        public string ContactInformationDelete(Guid UUID)
         {
             try
             {

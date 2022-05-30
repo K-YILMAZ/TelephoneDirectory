@@ -33,53 +33,97 @@ namespace Directory.WebApi.Controllers
         }
         // Kişileri Listeleme
         [HttpGet]
-        public List<PersonsEntity> GetAllPersons()
+        [Route("GetAll")]
+        public List<PersonsEntity> GetAll()
         {
             return IntancePerson().GetAll();
         }
         // Kişileri Detaylı Listeleme
         [HttpGet]
-        public List<ApiModels> GetAllDetailPersons()
+        [Route("GetAllDetail/")]
+        public List<ApiModels> GetAllDetail()
         {
-            var persons = IntancePerson().GetAll();
-            var contactInformations = IntanceContactInformations().GetAll();
-            var ApiModels = new List<ApiModels>();
-            persons.ForEach(person =>
-          {
-              var contactInformation = contactInformations.Where(p => p.PersonUUID == person.UUID).ToList().FirstOrDefault();
-              ApiModels.Add(new ApiModels
-              {
-                  FirstName = person.FirstName,
-                  LastName = person.LastName,
-                  Company = person.Company,
-                  TelephoneNumber = contactInformation.TelephoneNumber,
-                  Email = contactInformation.Email,
-                  Location = contactInformation.Location,
-                  Description = contactInformation.Description
-              });
-          });
-            return ApiModels;
+            try
+            {
+                var persons = IntancePerson().GetAll();
+                var contactInformations = IntanceContactInformations().GetAll();
+                var ApiModels = new List<ApiModels>();
+
+                persons.ForEach(person =>
+                {
+                    var contactInformationLoad = contactInformations.Where(p => p.PersonUUID == person.UUID).ToList();
+                    ContactInformationsEntity ContactInformation = new ContactInformationsEntity();
+                    if (contactInformations.Count > 0)
+                    {
+                        ContactInformation = contactInformationLoad.FirstOrDefault();
+                    }
+
+                    ApiModels.Add(new ApiModels
+                    {
+                        FirstName = person.FirstName,
+                        LastName = person.LastName,
+                        Company = person.Company,
+                        TelephoneNumber = ContactInformation.TelephoneNumber,
+                        Email = ContactInformation.Email,
+                        Location = ContactInformation.Location,
+                        Description = ContactInformation.Description
+                    });
+                });
+                return ApiModels;
+            }
+            catch (Exception ex)
+            {
+
+                throw (ex);
+            }
+
+
+        }
+        [HttpGet]
+        [Route("GetDetail/{uuid}")]
+        public List<ApiModels> GetDetail(Guid uuid)
+        {
+            try
+            {
+                var person = IntancePerson().GetByUUID(uuid) ?? new PersonsEntity();
+                var contactInformation = IntanceContactInformations().GetByPersonUUId(uuid) ?? new ContactInformationsEntity();
+                var ApiModels = new List<ApiModels>();
+
+                ApiModels.Add(new ApiModels
+                {
+                    FirstName = person.FirstName,
+                    LastName = person.LastName,
+                    Company = person.Company,
+                    TelephoneNumber = contactInformation.TelephoneNumber,
+                    Email = contactInformation.Email,
+                    Location = contactInformation.Location,
+                    Description = contactInformation.Description
+                });
+                return ApiModels;
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
 
         }
         // Kişi Oluşturma
         [HttpPost]
-        public string AddPerson(ApiModels entity)
+        [Route("Add")]
+        public string Add([FromBody] PersonsRequestBody personsRequestBody)
         {
             try
             {
-                Guid Personuuid = Guid.NewGuid();
-                Guid ContactInformationuuid = Guid.NewGuid();
-
                 IntancePerson().Add(new PersonsEntity
                 {
-                    FirstName = entity.FirstName,
-                    LastName = entity.LastName,
-                    Company = entity.Company,
-                    UUID = Personuuid
+                    FirstName = personsRequestBody.FirstName,
+                    LastName = personsRequestBody.LastName,
+                    Company = personsRequestBody.Company,
                 });
                 return "successful";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return "An error occurred. Error : " + ex.Message;
             }
@@ -87,19 +131,22 @@ namespace Directory.WebApi.Controllers
 
         // Kişi Kaldırma
         [HttpDelete]
-        public string PersonDelete(Guid UUID)
+        [Route("Delete/{uuid}")]
+        public string Delete(Guid uuid)
         {
             try
             {
-                var person = IntancePerson().GetByUUID(UUID);
-                var IntanceContactInformation = IntanceContactInformations().GetByPersonUUId(UUID);
-                IntancePerson().Delete(new PersonsEntity { UUID = UUID });
-                IntanceContactInformations().Delete(new ContactInformationsEntity { UUID = IntanceContactInformation.UUID });
+                var person = IntancePerson().GetByUUID(uuid);
+                var IntanceContactInformation = IntanceContactInformations().GetByPersonUUId(uuid);
+
+                IntancePerson().Delete(new PersonsEntity { UUID = uuid });
+                if (IntanceContactInformation != null)
+                    IntanceContactInformations().Delete(new ContactInformationsEntity { UUID = IntanceContactInformation.UUID });
                 return "successful";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-                return "An error occurred. Error : " + ex.Message;
+                throw (ex);
             }
         }
     }
