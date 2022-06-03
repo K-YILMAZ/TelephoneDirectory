@@ -1,1 +1,2 @@
-directory servis = 5001,
+directory servis =5001
+Gateway = 5000

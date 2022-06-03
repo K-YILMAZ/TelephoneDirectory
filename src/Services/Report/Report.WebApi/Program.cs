@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -8,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Directory.WebApi
+namespace Report.WebApi
 {
     public class Program
     {
@@ -16,7 +15,12 @@ namespace Directory.WebApi
         {
             CreateHostBuilder(args).Build().Run();
         }
-        public static IWebHostBuilder CreateHostBuilder(string[] args) =>
-           WebHost.CreateDefaultBuilder(args).UseUrls("http://localhost:5001/").UseStartup<Startup>();
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }

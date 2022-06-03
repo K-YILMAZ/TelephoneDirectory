@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TelephoneDirectory.Gateway.Controllers
+namespace Report.WebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
