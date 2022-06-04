@@ -5,6 +5,7 @@ using System.Collections.Generic;
 namespace Directory.Bussiness.Abstract.ContactInformations
 {
     public interface IContactInformationsService: IDirectoryRepositoryService<ContactInformationsEntity>  {
-        ContactInformationsEntity GetByPersonUUId(Guid PersonUUIDs);
+        ContactInformationsEntity GetByPersonuuid(Guid Personuuids);
+        List<ContactInformationsEntity> GetAllPersonuuid(Guid Personuuids);
     }
 }

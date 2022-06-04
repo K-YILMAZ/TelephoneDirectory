@@ -27,9 +27,15 @@ namespace Directory.Bussiness.Concrete.ContactInformations
         {
             return _contactInformationsDataAccess.GetAll();
         }
-        public ContactInformationsEntity GetByPersonUUId(Guid PersonUUIDs)
+
+        public List<ContactInformationsEntity> GetAllPersonuuid(Guid Personuuids)
         {
-          return  _contactInformationsDataAccess.Get(P => P.PersonUUID == PersonUUIDs);
+            return _contactInformationsDataAccess.GetAll(p => p.personuuid == Personuuids);
+        }
+
+        public ContactInformationsEntity GetByPersonuuid(Guid PersonUUIDs)
+        {
+          return  _contactInformationsDataAccess.Get(P => P.personuuid == PersonUUIDs);
         }
 
         public void Update(ContactInformationsEntity entity)

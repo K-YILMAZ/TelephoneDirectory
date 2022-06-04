@@ -44,21 +44,19 @@ namespace Directory.WebApi.Controllers
         // İletişim bilgisi Oluşturma
         [HttpPost]
         [Route("Add")]
-        public string Add([FromBody] ContactInformationsRequestBody contactInformationsRequestBody)
+        public string Add(Guid Personuuid,  ContactInformationEnum InformationType, string InformationContent)
         {
             try
             {
                 IntanceContactInformations().Add(new ContactInformationsEntity
                 {
-                    Description = contactInformationsRequestBody.Description,
-                    Email = contactInformationsRequestBody.Email,
-                    Location = contactInformationsRequestBody.Location,
-                    PersonUUID = contactInformationsRequestBody.PersonUUID,
-                    TelephoneNumber = contactInformationsRequestBody.TelephoneNumber
+                    informationContent=InformationContent,
+                    informationType=InformationType.ToString(),
+                    personuuid=Personuuid
                 });
                 return "successful";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 throw(ex);
             }
@@ -70,7 +68,7 @@ namespace Directory.WebApi.Controllers
         {
             try
             {
-                IntanceContactInformations().Delete(new ContactInformationsEntity { UUID = UUID });
+                IntanceContactInformations().Delete(new ContactInformationsEntity { uuid = UUID });
                 return "successful";
             }
             catch (System.Exception ex)

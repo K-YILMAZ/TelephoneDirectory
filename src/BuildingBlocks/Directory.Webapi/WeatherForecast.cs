@@ -1,6 +1,6 @@
 using System;
 
-namespace Directory.Services
+namespace Directory.Webapi
 {
     public class WeatherForecast
     {

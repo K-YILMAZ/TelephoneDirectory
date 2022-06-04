@@ -9,12 +9,12 @@ namespace Directory.Entities.Concrete.Persons
 { 
     public class PersonsEntity:IEntity {
         [Key]
-        public Guid UUID { get; set; }
+        public Guid uuid { get; set; }
         [StringLength(20)]
-        public string FirstName { get; set; }
+        public string firstName { get; set; }
         [StringLength(50)]
-        public string LastName { get; set; }
+        public string lastName { get; set; }
         [StringLength(100)]
-        public string Company { get; set; }
+        public string company { get; set; }
     }
 }

@@ -46,27 +46,15 @@ namespace Directory.WebApi.Controllers
             try
             {
                 var persons = IntancePerson().GetAll();
-                var contactInformations = IntanceContactInformations().GetAll();
                 var ApiModels = new List<ApiModels>();
-
                 persons.ForEach(person =>
                 {
-                    var contactInformationLoad = contactInformations.Where(p => p.PersonUUID == person.UUID).ToList();
-                    ContactInformationsEntity ContactInformation = new ContactInformationsEntity();
-                    if (contactInformations.Count > 0)
-                    {
-                        ContactInformation = contactInformationLoad.FirstOrDefault();
-                    }
-
                     ApiModels.Add(new ApiModels
                     {
-                        FirstName = person.FirstName,
-                        LastName = person.LastName,
-                        Company = person.Company,
-                        TelephoneNumber = ContactInformation.TelephoneNumber,
-                        Email = ContactInformation.Email,
-                        Location = ContactInformation.Location,
-                        Description = ContactInformation.Description
+                        firstName = person.firstName,
+                        lastName = person.lastName,
+                        company = person.company,
+                        contactInformationsList = IntanceContactInformations().GetAllPersonuuid(person.uuid)
                     });
                 });
                 return ApiModels;
@@ -86,18 +74,15 @@ namespace Directory.WebApi.Controllers
             try
             {
                 var person = IntancePerson().GetByUUID(uuid) ?? new PersonsEntity();
-                var contactInformation = IntanceContactInformations().GetByPersonUUId(uuid) ?? new ContactInformationsEntity();
+                var contactInformation = IntanceContactInformations().GetByPersonuuid(uuid) ?? new ContactInformationsEntity();
                 var ApiModels = new List<ApiModels>();
 
                 ApiModels.Add(new ApiModels
                 {
-                    FirstName = person.FirstName,
-                    LastName = person.LastName,
-                    Company = person.Company,
-                    TelephoneNumber = contactInformation.TelephoneNumber,
-                    Email = contactInformation.Email,
-                    Location = contactInformation.Location,
-                    Description = contactInformation.Description
+                    firstName = person.firstName,
+                    lastName = person.lastName,
+                    company = person.company,
+                    contactInformationsList = IntanceContactInformations().GetAllPersonuuid(uuid)
                 });
                 return ApiModels;
             }
@@ -117,9 +102,9 @@ namespace Directory.WebApi.Controllers
             {
                 IntancePerson().Add(new PersonsEntity
                 {
-                    FirstName = personsRequestBody.FirstName,
-                    LastName = personsRequestBody.LastName,
-                    Company = personsRequestBody.Company,
+                    firstName = personsRequestBody.FirstName,
+                    lastName = personsRequestBody.LastName,
+                    company = personsRequestBody.Company,
                 });
                 return "successful";
             }
@@ -137,11 +122,11 @@ namespace Directory.WebApi.Controllers
             try
             {
                 var person = IntancePerson().GetByUUID(uuid);
-                var IntanceContactInformation = IntanceContactInformations().GetByPersonUUId(uuid);
+                var IntanceContactInformation = IntanceContactInformations().GetByPersonuuid(uuid);
 
-                IntancePerson().Delete(new PersonsEntity { UUID = uuid });
+                IntancePerson().Delete(new PersonsEntity { uuid = uuid });
                 if (IntanceContactInformation != null)
-                    IntanceContactInformations().Delete(new ContactInformationsEntity { UUID = IntanceContactInformation.UUID });
+                    IntanceContactInformations().Delete(new ContactInformationsEntity { uuid = IntanceContactInformation.uuid });
                 return "successful";
             }
             catch (Exception ex)

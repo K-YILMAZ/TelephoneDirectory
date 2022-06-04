@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Directory.Services
+namespace Directory.Webapi
 {
     public class Program
     {

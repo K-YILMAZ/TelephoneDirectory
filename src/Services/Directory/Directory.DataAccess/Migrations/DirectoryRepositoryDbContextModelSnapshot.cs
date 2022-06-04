@@ -21,52 +21,45 @@ namespace Directory.DataAccess.Migrations
 
             modelBuilder.Entity("Directory.Entities.Concrete.ContactInformations.ContactInformationsEntity", b =>
                 {
-                    b.Property<Guid>("UUID")
+                    b.Property<Guid>("uuid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Description")
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Location")
+                    b.Property<string>("informationContent")
                         .HasMaxLength(300)
                         .HasColumnType("character varying(300)");
 
-                    b.Property<Guid>("PersonUUID")
+                    b.Property<string>("informationType")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<Guid>("personuuid")
                         .HasColumnType("uuid");
 
-                    b.Property<int>("TelephoneNumber")
-                        .HasColumnType("integer");
-
-                    b.HasKey("UUID");
+                    b.HasKey("uuid");
 
                     b.ToTable("contactInformationsEntities");
                 });
 
             modelBuilder.Entity("Directory.Entities.Concrete.Persons.PersonsEntity", b =>
                 {
-                    b.Property<Guid>("UUID")
+                    b.Property<Guid>("uuid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Company")
+                    b.Property<string>("company")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("firstName")
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)");
 
-                    b.Property<string>("LastName")
+                    b.Property<string>("lastName")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.HasKey("UUID");
+                    b.HasKey("uuid");
 
                     b.ToTable("personsEntities");
                 });

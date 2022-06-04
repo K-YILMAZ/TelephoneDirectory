@@ -30,7 +30,7 @@ namespace Directory.Bussiness.Concrete.Persons
 
         public PersonsEntity GetByUUID(Guid guid)
         {
-            return _personsDataAccess.Get(p => p.UUID == guid);
+            return _personsDataAccess.Get(p => p.uuid == guid);
         }
 
         public void Update(PersonsEntity entity)

@@ -11,13 +11,9 @@ namespace Directory.DataAccesss
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=myDataBase;User Id=postgres;Password=1;");
+            optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=directoryDataBase;User Id=postgres;Password=1;");
         }
         DbSet<PersonsEntity> personsEntities { get; set; }
         DbSet<ContactInformationsEntity> contactInformationsEntities { get; set; }
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.ApplyConfigurationsFromAssembly(typeof(DirectoryRepositoryDbContext).Assembly);
-        //}
     }
 }
