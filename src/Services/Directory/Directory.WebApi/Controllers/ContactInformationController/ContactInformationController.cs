@@ -27,6 +27,8 @@ namespace Directory.WebApi.Controllers
         {
             return _contactInformationsService ?? new ContactInformationsManager(new ContactInformationsDataAccess());
         }
+
+        // İletişim Bilgilerini Listeleme
         [HttpGet]
         [Route("GetAll")]
         public List<ContactInformationsEntity> GetAll()

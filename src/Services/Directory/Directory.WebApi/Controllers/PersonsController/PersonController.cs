@@ -67,6 +67,7 @@ namespace Directory.WebApi.Controllers
 
 
         }
+        //Bir kişinin detaylı Bilgisini Listeleme
         [HttpGet]
         [Route("GetDetail/{uuid}")]
         public List<ApiModels> GetDetail(Guid uuid)

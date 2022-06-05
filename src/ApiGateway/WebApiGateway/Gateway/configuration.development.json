@@ -14,15 +14,15 @@
       "UpstreamScheme": "http"
     },
     {
-      "DownstreamPathTemplate": "/swagger/",
+      "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 5001
+          "Port": 5002
         }
       ],
-      "UpstreamPathTemplate": "/services/directory/swagger",
+      "UpstreamPathTemplate": "/services/report/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
       "UpstreamScheme": "http"
     }
