@@ -1,5 +1,4 @@
-﻿using Report.WebApi.Models;
-using RestSharp;
+﻿using RestSharp;
 using System.Collections.Generic;
 
 namespace ReportBackgroundService.ServiceRestSharp

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Hosting;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using Report.SharedMessage.RabbitmqInstance;
 using ReportBackgroundService.Controls;
 using System;
 using System.Text;
@@ -20,11 +21,10 @@ namespace ReportBackgroundService.Services
 
         public override Task StartAsync(CancellationToken cancellationToken)
         {
-            _factory = new ConnectionFactory();
+            _factory = RabbitService.getInstance();
             _factory.Uri = new Uri("amqp://localhost");
 
             _cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-            _executingTask = ExecuteAsync(_cts.Token);
             _connection = _factory.CreateConnection();
             _channel = _connection.CreateModel();
 
@@ -33,7 +33,7 @@ namespace ReportBackgroundService.Services
 
             _consumer = new EventingBasicConsumer(_channel);
 
-            return _executingTask.IsCompleted ? _executingTask : Task.CompletedTask;
+            return base.StartAsync(cancellationToken);
         }
         protected async override Task ExecuteAsync(CancellationToken stoppingToken)
         {
@@ -52,6 +52,7 @@ namespace ReportBackgroundService.Services
                     _channel.BasicConsume(queue: "excell-creator", autoAck: false, consumer: _consumer);
 
                     await Task.Delay(1000, stoppingToken);
+
                 }
                 catch (OperationCanceledException)
                 {

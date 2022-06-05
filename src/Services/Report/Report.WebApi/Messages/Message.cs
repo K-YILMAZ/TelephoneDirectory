@@ -1,12 +1,10 @@
 ﻿using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using Report.SharedMessage.RabbitmqInstance;
 using Report.WebApi.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Report.WebApi.Messages
 {
@@ -14,7 +12,7 @@ namespace Report.WebApi.Messages
     {
         public static async void publish(ReportMessageCommand reportMessage)
         {
-            var factory = new ConnectionFactory();
+            var factory=RabbitService.getInstance();
 
             factory.Uri = new Uri("amqp://localhost");
 

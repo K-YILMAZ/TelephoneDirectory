@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using ReportBackgroundService.Services;
 
 namespace Report.WebApi
 {
@@ -25,6 +26,7 @@ namespace Report.WebApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Report.WebApi", Version = "v1" });
             });
+            services.AddHostedService<ReportDataCollectorService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
