@@ -35,9 +35,9 @@ http://localhost:5002/swagger/index.html adresinden metotları test etmek ve ger
 
 http://localhost:5000/services/report/Report/GetAllReport  adresinden rapor isteği yapılır 
 
-Rapor istekterinin çalışma mantığı message gueu mantığı ile çalışıyor gelen istekleri kuyruğa yazılır  report servisin içinde yer alan background servis kuyruğu async olarak dinler ver excel oluşturur 
+Rapor istekterinin çalışma mantığı Mesaj kuyruk mantığı ile çalışıyor gelen istekleri kuyruğa yazılır  report servisin içinde yer alan background servis kuyruğu async olarak dinler  ve rapor datalarını almak için directory servise rest olarak iletişim sağladım  ver excel oluşturur 
 
-Kullanılan teknolojiler ; rabbbitmq  mesajlaşma için ,  
+Kullanılan teknolojiler ; rabbbitmq  mesajlaşma için ,  RestSharp teknolojisi kullandım Rest api isteğinde bulunmak için.
 
 Rabbitmq  docker üzerinden kaldırdım, kodu;
 docker run -d --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.10-management
