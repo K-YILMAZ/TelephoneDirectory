@@ -18,7 +18,7 @@ namespace ReportBackgroundService.Controls
             var ContactInformations = DirectoryServiceApi<ContactInformationsEntity>.GetContactInformation(Method.GET, "ContactInformation/GetAll",null);
             var Persons = DirectoryServiceApi<PersonsEntity>.GetContactInformation(Method.GET, "Person/GetAll",null);
 
-            var location = ContactInformations.Data.Where(p => p.informationType == GetEnumDescription(ContactInformationEnum.Location)).Select(p=>p.informationContent.ToLowerInvariant()).ToList().Distinct().ToList();
+            var location = ContactInformations.Data.Where(p => p.informationType == GetEnumDescription(ContactInformationEnum.Location)).Select(p=>p.informationContent).ToList().Distinct().ToList();
 
 
             List<ReportEnity> reportEnities = new List<ReportEnity>();
@@ -26,7 +26,8 @@ namespace ReportBackgroundService.Controls
             //Rapor datalarını oluşturmak için oluşturduğum algoritma.
             location.ForEach(prop =>
             {
-                var per = ContactInformations.Data.Where(p => p.informationContent.ToLower() == prop).Select(p => p.personuuid).Distinct().ToList();
+                var per = ContactInformations.Data.Where(p => p.informationContent.ToLower() == prop.ToLower()).Select(p => p.personuuid).Distinct().ToList();
+                
                 var tel = ContactInformations.Data.Where(p => p.informationType == GetEnumDescription(ContactInformationEnum.TelephoneNumber)).ToList();
                 reportEnities.Add(new ReportEnity
                 {

@@ -3,6 +3,8 @@ using Microsoft.Office.Interop.Excel;
 using System.Collections.Generic;
 using ReportBackgroundService.Models;
 using Range = Microsoft.Office.Interop.Excel.Range;
+using IronXL;
+using System.Drawing;
 
 namespace ReportBackgroundService.Controls
 {
@@ -11,26 +13,27 @@ namespace ReportBackgroundService.Controls
         public static void DownloadCommaSeperatedFile(List<ReportEnity> reportEnities)
         {
 
-            Application excel = new Application();
-            excel.Visible = true;
-            object Missing = Type.Missing;
-            Workbook workbook = excel.Workbooks.Add(Missing);
-            Worksheet sheet1 = (Worksheet)workbook.Sheets[1];
+            int StartRow = 2;
 
-            int StartRow = 1;
+            WorkBook xlsWorkbook = WorkBook.Create(ExcelFileFormat.XLS);
+            xlsWorkbook.Metadata.Author = "IronXL";
+            WorkSheet xlsSheet = xlsWorkbook.CreateWorkSheet("new_sheet");
+            xlsSheet["A1"].Value = "Konum";
+            xlsSheet["B1"].Value = "Personel Sayısı";
+            xlsSheet["C1"].Value = "Telefon Numara Sayısı";
 
+            xlsSheet["A1"].Style.BackgroundColor = "#d3d3d3";
+            xlsSheet["B1"].Style.BackgroundColor = "#d3d3d3";
+            xlsSheet["C1"].Style.BackgroundColor = "#d3d3d3";
             foreach (var item in reportEnities)
             {
-                Range oneRange = (Range)sheet1.Cells[StartRow, 1];
-                Range twoRange = (Range)sheet1.Cells[StartRow, 2];
-                Range threeRange = (Range)sheet1.Cells[StartRow, 3];
 
-                oneRange.Value2 = item.LocationInformation;
-                twoRange.Value2 = item.recordedPerson;
-                threeRange.Value2 = item.recordedTelephoneNumber;
-
+                xlsSheet["A"+StartRow].Value = item.LocationInformation;
+                xlsSheet["B"+ StartRow].Value= item.recordedPerson;
+                xlsSheet["C"+ StartRow].Value = item.recordedTelephoneNumber;
                 StartRow++;
             }
+            xlsWorkbook.SaveAs("ExcelFile/NewExcelFile.xls");
         }
     }
 }

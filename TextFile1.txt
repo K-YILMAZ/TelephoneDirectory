@@ -1,2 +1,3 @@
-directory servis =5001
+directory servis = 5001
+Report servis = 5002
 Gateway = 5000
