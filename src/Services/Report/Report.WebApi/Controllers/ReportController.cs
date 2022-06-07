@@ -22,7 +22,7 @@ namespace Report.WebApi.Controllers
                 requestDate = DateTime.Now,
                 uuid = Guid.NewGuid()
             };
-            Message.publish(reportMessage);
+            MessagePublish.publish(reportMessage);
             return reportMessage;
         }
     }

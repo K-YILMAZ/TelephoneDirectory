@@ -40,13 +40,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Report.WebApi", "src\Servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway", "src\ApiGateway\WebApiGateway\Gateway\Gateway.csproj", "{A1E1F017-1FCC-440D-89CB-4BDE0CC1C0A2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Report.SharedMessage", "src\Services\Report\Report.SharedMessage\Report.SharedMessage.csproj", "{806321D5-054C-449E-875C-6BAB63B068B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQClient", "src\Services\Report\Report.SharedMessage\RabbitMQClient.csproj", "{806321D5-054C-449E-875C-6BAB63B068B0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportBackgroundService", "src\Services\Report\BackgroundService\ReportBackgroundService.csproj", "{29D7A005-8438-4AEF-A995-BED093842193}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelToCreate", "src\Services\Report\ExcelToCreate\ExcelToCreate.csproj", "{2AED4DEA-4870-486A-AD4E-D74330591B53}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Report.Test", "Test\Services\Report.Test\Report.Test.csproj", "{8DEF692F-5684-4163-863E-A3692D14301B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Report.Test", "Test\Services\Report.Test\Report.Test.csproj", "{8DEF692F-5684-4163-863E-A3692D14301B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -90,10 +88,6 @@ Global
 		{29D7A005-8438-4AEF-A995-BED093842193}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29D7A005-8438-4AEF-A995-BED093842193}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29D7A005-8438-4AEF-A995-BED093842193}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2AED4DEA-4870-486A-AD4E-D74330591B53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2AED4DEA-4870-486A-AD4E-D74330591B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2AED4DEA-4870-486A-AD4E-D74330591B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2AED4DEA-4870-486A-AD4E-D74330591B53}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8DEF692F-5684-4163-863E-A3692D14301B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8DEF692F-5684-4163-863E-A3692D14301B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DEF692F-5684-4163-863E-A3692D14301B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -119,7 +113,6 @@ Global
 		{A1E1F017-1FCC-440D-89CB-4BDE0CC1C0A2} = {CCBC1FDC-F592-45B8-B723-C60F3B331C20}
 		{806321D5-054C-449E-875C-6BAB63B068B0} = {5234ADB0-E464-46C2-B487-8C197B443B8A}
 		{29D7A005-8438-4AEF-A995-BED093842193} = {5234ADB0-E464-46C2-B487-8C197B443B8A}
-		{2AED4DEA-4870-486A-AD4E-D74330591B53} = {5234ADB0-E464-46C2-B487-8C197B443B8A}
 		{8DEF692F-5684-4163-863E-A3692D14301B} = {86FCE92C-B63D-4603-A0F7-4328526AF5D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
