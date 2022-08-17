@@ -47,8 +47,3 @@ Excel yolu = src\Services\Report\Report.WebApi\ExcelFile.
 Test işlemleri test klasörünün içinde yer alan test projeleri yer almaktadır,
 Ve belirttiğim gibi swagger eklentisi ekledim test amaçlı ve daha net görünmesi açısından 
 
-Not => Rapor kısmıında bazı eksiklikler mevcut ama rahat giderebileceğim durumlar zadece yoğun çalışma ve  bazı olaylar (ev taşıma ve uygun ortam sağlayamama  ve internet sorunları) yaşadığımdan verilen süreyi verimli kullanamamış olmam.
-Gerektiği takdirde istenilen güncellemeleri hızlı bir şekilde yaparım.
-
-Saygılarımla 
-İyi günler dilerim.
